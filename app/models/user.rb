@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy #dependent: :destroyをつけることで、オブジェクトが削除されるときに、関連付けられたオブジェクトのdestroyメソッドが実行される。今回で言うと、ユーザーが削除されたら、そのユーザーに紐づく投稿も削除される。
+  has_many :likes
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
