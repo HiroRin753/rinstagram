@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @post = Post.new
     @post.photos.build #buildはnewと違いはない。Railsの慣習でモデルを関連付け（今回で言うと、PostモデルとPhotoモデルの関連付け）したときにbuildを使う
@@ -20,5 +22,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:caption, photos_attributes: [:image]).merge(user_id: current_user.id)
     end
-    
+
 end
